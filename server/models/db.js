@@ -142,6 +142,13 @@ const ProfilePic = db.define('profilepic', {
 }, {
   timestamps: true,
 });
+
+const Tumblr = db.define("tumblr", {
+  tumblrHandle :{
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+})
 /*
   RELATIONSHIPS
 */
@@ -174,6 +181,8 @@ Snyppr.hasOne(ProfilePic);
 Snypee.hasOne(ProfilePic);
 ProfilePic.belongsTo(Snypee);
 ProfilePic.belongsTo(Snyppr);
+Snyppr.hasOne(Tumblr);
+Tumblr.belongsTo(Snyppr);
 
 db.authenticate()
   .then(() => {

@@ -30,6 +30,7 @@ gulp.task('seed:wipe', (cb) => {
     .then(() => db.SnypprStripe.sync({ force: true }))
     .then(() => db.SnypprImage.sync({ force: true }))
     .then(() => db.ProfilePic.sync({ force: true }))
+    .then(() => db.Tumblr.sync({ force: true }))
     .then(() => { cb(); })
     .catch((err) => { cb(err); });
 });
