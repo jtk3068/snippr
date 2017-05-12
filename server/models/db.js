@@ -191,7 +191,12 @@ Snypee.hasOne(ProfilePic);
 Snyppr.hasOne(CertificatePic);
 ProfilePic.belongsTo(Snypee);
 ProfilePic.belongsTo(Snyppr);
+<<<<<<< HEAD
 CertificatePic.belongsTo(Snyppr);
+=======
+Snyppr.hasOne(Tumblr);
+Tumblr.belongsTo(Snyppr);
+>>>>>>>  created tumblr schema
 
 
 db.authenticate()
