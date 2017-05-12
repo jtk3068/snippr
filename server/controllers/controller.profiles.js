@@ -69,17 +69,19 @@ exports.updateCertified = (req, res) => {
   }).catch((err) => {
     res.status(404).send(err);
   });
+}
 
 exports.addTumblr = (req, res) => {
-  let tumblrHandle = req.params.tumblrHandle
+  let tumblrHandle = req.params.tumblr;
+  console.log("this is req params tumblerhandle ", req)
   const config = {
         headers: {'Content-Type': 'application/json'
       }
     }
   axios.get("https://api.tumblr.com/v2/blog/" + tumblrHandle +  "/posts/photo?api_key=hMrH1EJuH5MnQpmQSUhlw1lZ9tAMNCPPLeW4YHyxRLPnKgfcQV", config)
     .then(function(photos){
-      console.log('before success console')
-      console.log(photos);
+      console.log('before success console!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+      //console.log(photos.data.response.posts);
       console.log('after success console')
       res.send(photos.data.response.posts)
     })

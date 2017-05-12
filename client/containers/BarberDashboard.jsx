@@ -64,15 +64,17 @@ class BarberDashboard extends Component {
         .catch(err => {
           console.log(err);
         })
+      }
   getTumblrImg(){
+    console.log("this is my tumblr handle ", this.props.profile.tumblrHandle);
       axios.get(`/tumblr/${this.props.profile.tumblrHandle}`)
-      .then(function(response){
-        console.log('before success console')
-        console.log(response);
-        console.log('after success console')
+      .then((response) => {
+        console.log('before success console in dashboard')
+        console.log(response.data);
+        // console.log('after success console')
       //this.setState({images: response.data.response.posts})
     })
-      .catch(function(err){
+      .catch((err) => {
       if(err){
       console.log("there was an error : ", err)
       }     
