@@ -69,8 +69,17 @@ class BarberDashboard extends Component {
     console.log("this is my tumblr handle ", this.props.profile.tumblrHandle);
       axios.get(`/tumblr/${this.props.profile.tumblrHandle}`)
       .then((response) => {
+        const arr = [];
+        console.log(response)
         console.log('before success console in dashboard')
-        console.log(response.data);
+        //console.log(response.data[0].photos[0].alt_size[0].url)
+        response.data.forEach((image) => {
+          // console.log("this is image in dash ", image)
+        arr.push(image.photos[0].alt_sizes[0].url);  
+      });
+        console.log(arr);
+        this.setState({ images: arr });
+
         // console.log('after success console')
       //this.setState({images: response.data.response.posts})
     })
@@ -97,6 +106,8 @@ class BarberDashboard extends Component {
     });
   }
   render() {
+    console.log("this is the state of page ", this.state.currentWindow)
+    console.log("this is the state of images in barber dash: ", this.state.images)
     return (
       <div className="profile">
         <Header />
@@ -115,14 +126,14 @@ class BarberDashboard extends Component {
                 transactions={this.props.profile.transactions || []} target="Snypee"
               />
             </div>
-            <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
+            {/*<div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
               <center>
                 <S3Uploader
                   authId={this.props.profile.id}
                   action="upload"
                 />
               </center>
-            </div>
+            </div>*/}
             <div className={this.state.currentWindow === 'Certification' ? '' : 'hidden'}>
               <center>
                 <S3Uploader
@@ -142,15 +153,15 @@ class BarberDashboard extends Component {
                 </Button>
               </center>
             </div>
-            <div className={this.state.currentWindow === 'Upload' ? '' : 'hidden'}>
-              <center>
+            <div className={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'}>
+              {/*<center>
                 <S3Uploader
                   authId={this.props.profile.id}
                   action="profilepic"
                   type="snyppr"
                 />
-              </center>
-              <PortfolioList images={this.state.barberImages || []} hide={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'} />
+              </center>*/}
+              <PortfolioList images={this.state.images || []} hide={this.state.currentWindow === 'Portfolio' ? '' : 'hidden'} />
             </div>
             <div className={`chatbox-container ${this.state.displayBarberChat ? '' : 'hidden'}`}>
               <div>

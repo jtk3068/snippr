@@ -28,7 +28,7 @@ class BarberSideBar extends Component {
             this.changeActiveTab(0);
           }}
           value="Portfolio" className={`navmenu-items ${this.state.activeTab === 0 ? 'navmenu-active' : ''}`}
-        >Portfolio</button>
+        > Portfolio</button>
         <button
           onClick={(e) => {
             this.props.changeWindow(e);

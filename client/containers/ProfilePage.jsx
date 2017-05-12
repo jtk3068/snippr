@@ -19,11 +19,12 @@ class ProfilePage extends Component {
       favorited: false,
       displayClientChat: false,
       currentWindow: 'Reviews',
-      barberImages: [],
+      barberImages: []      
     };
     this.handleChatToggle = this.handleChatToggle.bind(this);
     this.changeWindow = this.changeWindow.bind(this);
     this.getBarberImages = this.getBarberImages.bind(this);
+    this.getTumblrImg = this.getTumblrImg.bind(this);
   }
 
   getBarberImages() {
@@ -40,18 +41,57 @@ class ProfilePage extends Component {
       this.setState({ barberImages: arr });
     });
   }
+
+  // getTumblrHandle(){
+  //   const barberId = this.props.snyppr.id;
+  //   axios.get(`/getProfile/${barberId}`)
+  //   .then(res =>{
+  //     console.log("this is res in profilepage: ", res)
+  //     // this.setState({tumblrHandle: })
+  //   })
+  //   .catch(err =>{
+  //     if(err){
+  //       console.log("there was err getting tumblr handle", err)
+  //     }
+  //   })
+  // }
+  getTumblrImg(){
+      axios.get(`/tumblr/${this.props.snyppr.tumblrHandle}`)
+      .then((response) => {
+        const arr = [];
+        console.log(response)
+        console.log('before success console in dashboard')
+        //console.log(response.data[0].photos[0].alt_size[0].url)
+        response.data.forEach((image) => {
+          // console.log("this is image in dash ", image)
+        arr.push(image.photos[0].alt_sizes[0].url);  
+      });
+        console.log(arr);
+        this.setState({ barberImages: arr });
+
+        // console.log('after success console')
+      //this.setState({images: response.data.response.posts})
+    })
+      .catch((err) => {
+      if(err){
+      console.log("there was an error : ", err)
+      }     
+    })
+  }
   handleChatToggle() {
     this.setState({ displayClientChat: !this.state.displayClientChat });
   }
   changeWindow(event) {
     this.setState({ currentWindow: event.target.value });
     if (event.target.value === 'Portfolio') {
-      this.getBarberImages();
+      // this.getBarberImages();
+      this.getTumblrImg();
     }
   }
 
   render() {
-    console.log('this is the barbers images state ', this.state);
+    console.log('this is the barbers images and ID ', this.props.snyppr);
+    console.log('this is the state of barber image ', this.state.barberImages)
     return (
       <div className="profile">
         <Notifications />

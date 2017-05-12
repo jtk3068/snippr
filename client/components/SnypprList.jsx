@@ -5,13 +5,9 @@ import _ from 'underscore';
 
 const SnypprList = (props) => {
   if (props.snypprs.data) {
-    const certifiedSnypprs = [];
-    _.each(props.snypprs.data, (snyppr) => {
-      snyppr.certified === true ? certifiedSnypprs.push(snyppr) : null;
-    })
-    return (
+        return (
       <div className="entryholder">
-        {certifiedSnypprs.map(snyppr =>
+        {props.snypprs.data.map(snyppr =>
           <SnypprEntry snyppr={snyppr} />)}
       </div>
     );
@@ -27,3 +23,18 @@ SnypprList.propTypes = {
 };
 
 export default SnypprList;
+
+    /*const certifiedSnypprs = [];
+    _.each(props.snypprs.data, (snyppr) => {
+      snyppr.certified === true ? certifiedSnypprs.push(snyppr) : null;
+    })
+    return (
+      <div className="entryholder">
+        {certifiedSnypprs.map(snyppr =>
+          <SnypprEntry snyppr={snyppr} />)}
+      </div>
+    );
+  }
+  return (
+    <div />
+  );*/
