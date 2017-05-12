@@ -1,6 +1,7 @@
 const db = require('../models/db');
 const strConverter = require('../../client/utils/stringConverter');
 const geoConverter = require('../../client/utils/geoConverter');
+const axios = require("axios");
 // store whether user is snypee or snyppr in auth0 profile
 
 exports.verifyHasProfile = (req, res) => {
@@ -54,6 +55,7 @@ exports.addProfile = (req, res) => {
     });
 };
 
+
 exports.updateCertified = (req, res) => {
   db.Snyppr.findOne({
     where: {
@@ -67,4 +69,23 @@ exports.updateCertified = (req, res) => {
   }).catch((err) => {
     res.status(404).send(err);
   });
+
+exports.addTumblr = (req, res) => {
+  let tumblrHandle = req.params.tumblrHandle
+  const config = {
+        headers: {'Content-Type': 'application/json'
+      }
+    }
+  axios.get("https://api.tumblr.com/v2/blog/" + tumblrHandle +  "/posts/photo?api_key=hMrH1EJuH5MnQpmQSUhlw1lZ9tAMNCPPLeW4YHyxRLPnKgfcQV", config)
+    .then(function(photos){
+      console.log('before success console')
+      console.log(photos);
+      console.log('after success console')
+      res.send(photos.data.response.posts)
+    })
+    .catch(function(err){
+      console.log("there was an error : ", err)
+      res.send(err);
+    })
+
 };

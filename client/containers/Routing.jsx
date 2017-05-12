@@ -35,6 +35,7 @@ class Routing extends Component {
   }
 
   submitUserInfo(e) {
+    console.log("this is the e in sumbitUserInfo ", e);
     this.setState({ loading: true });
     e.preventDefault();
     const data = {};

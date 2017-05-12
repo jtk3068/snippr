@@ -31,6 +31,7 @@ class UserInfoForm extends Component {
                   className="rightin" type="text"
                   name="lname" placeholder="Last Name" required
                 />
+                <input name="tumblrHandle"  type="text" placeholder="tumblr handle" />
               </div>
               <div className="midinput">
                 <input
@@ -44,6 +45,7 @@ class UserInfoForm extends Component {
           </form>
         </div>
         <Footer />
+        
       </div>
     );
   }

@@ -35,10 +35,16 @@ const Snyppr = db.define('snyppr', {
     type: Sequelize.FLOAT,
     allowNull: false,
   },
+<<<<<<< HEAD
   certified: {
     type: Sequelize.BOOLEAN,
     allowNull: false,
     defaultValue: false,
+=======
+    tumblrHandle :{
+    type: Sequelize.STRING,
+    allowNull: true,
+>>>>>>>  added schema and input and routes and get request
   },
 }, {
   timestamps: false,
@@ -149,6 +155,7 @@ const ProfilePic = db.define('profilepic', {
   timestamps: true,
 });
 
+<<<<<<< HEAD
 const CertificatePic = db.define('certificatepic', {
   url: {
     type: Sequelize.STRING,
@@ -158,8 +165,20 @@ const CertificatePic = db.define('certificatepic', {
   timestamps: true,
 });
 
+=======
+// const Tumblr = db.define("tumblr", {
+//   snypprId: {
+//     type: Sequelize.STRING,
+//     allowNull: false,
+//   },
+//   tumblrHandle :{
+//     type: Sequelize.STRING,
+//     allowNull: false,
+//   },
+// })
+>>>>>>>  added schema and input and routes and get request
 /*
-  RELATIONSHIPS
+  RELATIONSHIPS;
 */
 
 Snyppr.hasMany(Transaction);
@@ -192,11 +211,16 @@ Snyppr.hasOne(CertificatePic);
 ProfilePic.belongsTo(Snypee);
 ProfilePic.belongsTo(Snyppr);
 <<<<<<< HEAD
+<<<<<<< HEAD
 CertificatePic.belongsTo(Snyppr);
 =======
 Snyppr.hasOne(Tumblr);
 Tumblr.belongsTo(Snyppr);
 >>>>>>>  created tumblr schema
+=======
+// Snyppr.hasOne(Tumblr);
+// Tumblr.belongsTo(Snyppr);
+>>>>>>>  added schema and input and routes and get request
 
 
 db.authenticate()
@@ -216,4 +240,8 @@ module.exports.SnypprReview = SnypprReview;
 module.exports.SnypeeReview = SnypeeReview;
 module.exports.SnypprImage = SnypprImage;
 module.exports.ProfilePic = ProfilePic;
+<<<<<<< HEAD
 module.exports.CertificatePic = CertificatePic;
+=======
+// module.exports.Tumblr = Tumblr;
+>>>>>>>  added schema and input and routes and get request

@@ -31,10 +31,11 @@ class BarberDashboard extends Component {
     this.getImages = this.getImages.bind(this);
     this.getVerified = this.getVerified.bind(this);
     this.certificateVerified = this.certificateVerified.bind(this);
+    this.getTumblrImg = this.getTumblrImg.bind(this);
   }
 
   getImages() {
-    console.log(this.props.profile.id);
+    console.log("this is profile id: ", this.props.profile.tumblrHandle);
     const endpoint = `/images/${this.props.profile.id}`;
     axios.get(endpoint)
     .then((res) => {
@@ -47,6 +48,7 @@ class BarberDashboard extends Component {
       this.setState({ images: arr });
     });
   }
+
   getVerified() {
     console.log('we in getverified profile id', this.props.profile.id)
     console.log('we in getverified ', localStorage);
@@ -62,6 +64,19 @@ class BarberDashboard extends Component {
         .catch(err => {
           console.log(err);
         })
+  getTumblrImg(){
+      axios.get(`/tumblr/${this.props.profile.tumblrHandle}`)
+      .then(function(response){
+        console.log('before success console')
+        console.log(response);
+        console.log('after success console')
+      //this.setState({images: response.data.response.posts})
+    })
+      .catch(function(err){
+      if(err){
+      console.log("there was an error : ", err)
+      }     
+    })
   }
   handleChatToggle() {
     this.setState({ displayBarberChat: !this.state.displayBarberChat });
@@ -69,7 +84,8 @@ class BarberDashboard extends Component {
   changeWindow(event) {
     this.setState({ currentWindow: event.target.value });
     if (event.target.value === 'Portfolio') {
-      this.getImages();
+      // this.getImages();
+      this.getTumblrImg();
     }
   }
   certificateVerified(words) {
