@@ -476,6 +476,13 @@ modalimg{
     width:  100%;
     height: 40px;
 }
+.midinput2{
+    position: absolute;
+    top: 30vh;
+    left: 5%;
+    width:  100%;
+    height: 40px;
+}
 
 .someinput{
     position: absolute;

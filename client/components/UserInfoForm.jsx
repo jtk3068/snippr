@@ -31,7 +31,6 @@ class UserInfoForm extends Component {
                   className="rightin" type="text"
                   name="lname" placeholder="Last Name" required
                 />
-                <input name="tumblrHandle"  type="text" placeholder="tumblr handle" />
               </div>
               <div className="midinput">
                 <input
@@ -39,6 +38,9 @@ class UserInfoForm extends Component {
                   type="text" name="address"
                   placeholder="Address" required
                 />
+              </div>
+              <div className={this.props.accountType === 'Snyppr' ? "midinput2" : 'hidden'}>
+                <input name="tumblrHandle"  type="text" placeholder="tumblr handle" />
               </div>
               <input className="hairstyles" type="submit" value="Submit" />
             </div>
